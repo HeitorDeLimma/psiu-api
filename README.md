@@ -4,8 +4,10 @@
 
 ### Aluno 
 
-- [] Cadastrar um aluno
-  - [] Não deve ser possível cadastrar um RA já cadastrado
+- [X] Cadastrar um aluno
+  - [X] Não deve ser possível cadastrar um RA já cadastrado
+  - [] Gerar senha aleatória para primeiro acesso
+  - [] Criar hash para a senha aleatória gerada
 
 - [] Editar um aluno
   - [] Deve ser possível alterar o nome e data de nascimento do aluno
