@@ -1,10 +1,7 @@
+import { db } from '@database/client'
+import { generatePassword } from '@utils/generate-password'
 import { randomUUID } from 'crypto'
 import { Request, Response } from 'express'
-
-import { generatePassword } from '../../../../src/utils/generate-password'
-import { Database } from '../../../database'
-
-const database = new Database()
 
 interface Body {
   ra: string
@@ -18,7 +15,7 @@ export async function createStudent(
 ): Promise<void> {
   const { ra, name, birthdate } = req.body as Body
 
-  const studentByRa = database.select('students', { ra })
+  const studentByRa = db.select('students', { ra })
 
   if (studentByRa.length) {
     res.status(400).json({
@@ -37,7 +34,7 @@ export async function createStudent(
     birthdate: new Date(birthdate),
   }
 
-  database.insert('students', student)
+  db.insert('students', student)
 
   res.status(201).json({
     result: 'success',
