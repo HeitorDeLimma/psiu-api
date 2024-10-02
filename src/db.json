@@ -1,1 +1,26 @@
-{"students":[{"id":"136539d5-8452-4cc5-a24f-c3f40258a195","ra":"123456889","name":"Heitor","password":"","birthdate":"2008-07-12T00:00:00.000Z"}]}
+{
+  "students": [
+    {
+      "id": "541983fb-a83a-4897-b893-e89d7b90385f",
+      "ra": "123458294",
+      "name": "Heitor A Lima",
+      "password": "0NRWeg",
+      "birthdate": "2008-07-02T00:00:00.000Z",
+      "active": false,
+      "createdAt": "2024-10-01T01:20:45.348Z",
+      "updatedAt": "2024-10-01T01:20:45.348Z",
+      "updateAt": "2024-10-01T01:43:12.563Z"
+    },
+    {
+      "id": "751ec604-e94b-461b-9be8-d8a78bb3c81f",
+      "ra": "123458994",
+      "name": "Heitor",
+      "password": "6euBJF",
+      "birthdate": "2008-07-12T00:00:00.000Z",
+      "active": false,
+      "createdAt": "2024-10-01T01:42:59.099Z",
+      "updatedAt": "2024-10-01T01:42:59.099Z",
+      "updateAt": "2024-10-01T01:43:33.005Z"
+    }
+  ]
+}

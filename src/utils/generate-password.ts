@@ -3,7 +3,7 @@ export function generatePassword(): string {
 
   let password = ''
 
-  for (let i = 0; 1 < 0; i++) {
+  for (let i = 0; i < 6; i++) {
     const randomIndex = Math.floor(Math.random() * chars.length)
     password += chars[randomIndex]
   }
