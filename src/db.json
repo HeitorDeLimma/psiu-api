@@ -1,26 +1,14 @@
 {
   "students": [
     {
-      "id": "541983fb-a83a-4897-b893-e89d7b90385f",
-      "ra": "123458294",
-      "name": "Heitor A Lima",
-      "password": "0NRWeg",
-      "birthdate": "2008-07-02T00:00:00.000Z",
-      "active": false,
-      "createdAt": "2024-10-01T01:20:45.348Z",
-      "updatedAt": "2024-10-01T01:20:45.348Z",
-      "updateAt": "2024-10-01T01:43:12.563Z"
-    },
-    {
-      "id": "751ec604-e94b-461b-9be8-d8a78bb3c81f",
-      "ra": "123458994",
+      "id": "018ebcf2-48bc-4eed-8935-c67ac8ab2cbe",
+      "ra": "123051994",
       "name": "Heitor",
-      "password": "6euBJF",
+      "passwordHash": "$2b$10$attMksp9NQ4Dw3UatG2muuRtF3c5FqOphybYWZRNJMQv4LuMtoR0y",
       "birthdate": "2008-07-12T00:00:00.000Z",
-      "active": false,
-      "createdAt": "2024-10-01T01:42:59.099Z",
-      "updatedAt": "2024-10-01T01:42:59.099Z",
-      "updateAt": "2024-10-01T01:43:33.005Z"
+      "active": true,
+      "createdAt": "2024-10-03T00:51:05.263Z",
+      "updatedAt": "2024-10-03T00:51:05.263Z"
     }
   ]
 }

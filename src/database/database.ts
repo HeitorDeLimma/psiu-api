@@ -9,7 +9,7 @@ interface Row {
   [key: string]: any
 }
 
-interface Search {
+interface Where {
   [key: string]: any
 }
 
@@ -30,8 +30,8 @@ export class Database {
     fs.writeFile(databasePath, JSON.stringify(this.#database))
   }
 
-  // SELECT
-  select(table: string, search?: Search): Row[] {
+  // SELECT MANY
+  findMany(table: string, search?: Where): Row[] {
     let data = this.#database[table] ?? []
 
     if (search) {
@@ -47,8 +47,19 @@ export class Database {
     return data
   }
 
+  // SELECT UNIQUE
+  findUnique(table: string, search: Where): Row | null {
+    const data = this.#database[table] ?? []
+
+    const found = data.find((row) =>
+      Object.entries(search).every(([key, value]) => row[key] === value),
+    )
+
+    return found ?? null
+  }
+
   // INSERT
-  insert(table: string, data: Row): Row {
+  create(table: string, data: Row): Row {
     if (Array.isArray(this.#database[table])) {
       this.#database[table].push(data)
     } else {

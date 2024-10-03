@@ -3,7 +3,7 @@ import { Router } from 'express'
 import { createStudent } from './create-student'
 import { getStudents } from './get-students'
 import { inactivateStudent } from './inactivate-student'
-import { updateStudents } from './update-student'
+import { updateStudents } from './update-students'
 
 const userRouter = Router()
 
