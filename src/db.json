@@ -1,14 +1,14 @@
 {
   "students": [
     {
-      "id": "018ebcf2-48bc-4eed-8935-c67ac8ab2cbe",
-      "ra": "123051994",
+      "id": "0d0579ec-d579-4d66-a2d7-9aebf01e7c7b",
+      "ra": "123456789",
       "name": "Heitor",
-      "passwordHash": "$2b$10$attMksp9NQ4Dw3UatG2muuRtF3c5FqOphybYWZRNJMQv4LuMtoR0y",
+      "passwordHash": "$2b$10$FDGLPtWTkw5pqCXL.YWyaOrNmSHDcSDNiARLH9YaOg.OFplAVsRDW",
       "birthdate": "2008-07-12T00:00:00.000Z",
       "active": true,
-      "createdAt": "2024-10-03T00:51:05.263Z",
-      "updatedAt": "2024-10-03T00:51:05.263Z"
+      "createdAt": "2024-10-03T23:13:10.504Z",
+      "updatedAt": "2024-10-03T23:13:10.504Z"
     }
   ]
 }
