@@ -15,20 +15,27 @@
 
 - [] Atualizar senha
   - [] Não deve ser possível colocar uma senha fraca
+  - [] Checar a senha atual do estudante
+  - [] Confirmar nova senha duas vezes
   
 - [X] Deletar um aluno
   - [X] Deve utilizar soft delete
   - [X] Não deve ser possível deletar um student inativo
 
 - [X] Buscar alunos
-  -[] Criar páginação na busca de alunos
+  - [] Criar páginação na busca de alunos
 
 ### Autenticação
 
-- [] Autenticação com senha
-  - [] Verificar se o RA existe
-  - [] Criar um token de autenticação 
-
+- [X] Autenticação com senha
+  - [X] Não deve ser possível autenticar um estudante inativo
+  - [X] Verificar se o RA existe
+  - [X] Criar um token de autenticação
+- [X] Criar middleware de autenticação
+  - [X] Não deve ser possível passar um estudante inativo/inexistente
+  - [X] Deve varificar o id do estudante com o id presente no token
+  - [X] Deve verificar a validade do token
+ 
 ### Posts
 
 - [] Criar post

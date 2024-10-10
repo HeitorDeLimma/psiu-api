@@ -1,14 +1,1 @@
-{
-  "students": [
-    {
-      "id": "0d0579ec-d579-4d66-a2d7-9aebf01e7c7b",
-      "ra": "123456789",
-      "name": "Heitor",
-      "passwordHash": "$2b$10$FDGLPtWTkw5pqCXL.YWyaOrNmSHDcSDNiARLH9YaOg.OFplAVsRDW",
-      "birthdate": "2008-07-12T00:00:00.000Z",
-      "active": true,
-      "createdAt": "2024-10-03T23:13:10.504Z",
-      "updatedAt": "2024-10-03T23:13:10.504Z"
-    }
-  ]
-}
+{"students":[{"id":"0d0579ec-d579-4d66-a2d7-9aebf01e7c7b","ra":"123456789","name":"Heiuor A Lima","passwordHash":"$2b$10$FDGLPtWTkw5pqCXL.YWyaOrNmSHDcSDNiARLH9YaOg.OFplAVsRDW","birthdate":"2008-07-02T00:00:00.000Z","active":false,"createdAt":"2024-10-03T23:13:10.504Z","updatedAt":"2024-10-03T23:13:10.504Z","updateAt":"2024-10-09T23:42:40.889Z"},{"id":"89545ebd-596b-4d11-ab5f-3097bdf38469","ra":"123456799","name":"Heitor A Lima","passwordHash":"$2b$10$ZsAfPenUdZFknOQR/b2lHeTg/aa2B5KDYQ4ee5v3D3wg54ehJVpPS","birthdate":"2008-07-02T00:00:00.000Z","active":true,"createdAt":"2024-10-09T23:28:52.187Z","updatedAt":"2024-10-09T23:28:52.187Z","updateAt":"2024-10-09T23:37:03.958Z"}]}
