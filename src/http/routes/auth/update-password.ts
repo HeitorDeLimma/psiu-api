@@ -1,5 +1,5 @@
 import { db } from '@database/client'
-import { checkPassword } from '@lib/bcrypt'
+import { checkPassword, encryptPassword } from '@lib/bcrypt'
 import { Request, Response } from 'express'
 
 interface Body {
@@ -33,12 +33,41 @@ export async function updatePassword(
       result: 'error',
       message: 'Incorrect password',
     })
+
+    return
   }
 
-  if (newPassword === confirmNewPassword) {
-    response.status(401).json({
+  if (newPassword !== confirmNewPassword) {
+    response.status(400).json({
       result: 'error',
       message: 'Passwords do not match',
     })
+
+    return
   }
+
+  if (
+    !newPassword.match(
+      /(?=^.{8,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,
+    )
+  ) {
+    response.status(400).json({
+      result: 'error',
+      message: 'The new password is weak',
+    })
+
+    return
+  }
+
+  const passwordEncrypt = await encryptPassword(newPassword)
+
+  db.update('students', studentId, {
+    passwordHash: passwordEncrypt,
+    updateAt: new Date(),
+  })
+
+  response.json({
+    result: 'success',
+    message: 'Password updated',
+  })
 }
