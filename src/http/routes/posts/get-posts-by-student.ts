@@ -11,10 +11,7 @@ export async function getPostsByStudent(
 ): Promise<void> {
   const { studentId } = request.params
 
-  const posts = db.findMany('posts', {
-    active: true,
-    studentId,
-  })
+  const posts = db.findMany('posts', { active: true, studentId })
 
   response.json({
     result: 'success',

@@ -51,6 +51,8 @@ export async function authentication(
 
     next()
   } catch (error) {
+    console.log(error)
+
     response.status(401).json({
       result: false,
       message: 'Authentication failed',

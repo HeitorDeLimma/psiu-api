@@ -17,7 +17,7 @@ export async function inactivatePost(
   if (!post) {
     response.status(400).json({
       result: 'error',
-      message: 'post not found',
+      message: 'Post not found',
     })
 
     return
@@ -34,7 +34,7 @@ export async function inactivatePost(
 
   db.update('posts', postId, {
     active: false,
-    updateAt: new Date(),
+    updatedAt: new Date(),
   })
 
   response.json({

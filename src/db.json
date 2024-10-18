@@ -1,66 +1,64 @@
 {
   "students": [
     {
-      "id": "f8255313-31be-4524-9717-9b46281fa8e9",
-      "ra": "123456789",
-      "name": "Heitor",
-      "passwordHash": "$2b$10$AgQ5y1v/aEj3mj7n71eIbubY4qFFfSlIwjEPxo0xz86uGOFSSMAQ.",
-      "birthdate": "2008-07-12T00:00:00.000Z",
+      "id": "63befa51-a9dd-4d50-8fd5-36c2558402c0",
+      "ra": "RA123456789",
+      "name": "Natan Foleto",
+      "passwordHash": "$2b$10$e89.ODxBpuA2FN1obtQ.De0rdmlGElMJPpLU7sfEVJpsPCqIW/Y3a",
+      "birthdate": "1999-07-10T00:00:00.000Z",
       "active": true,
-      "createdAt": "2024-10-17T00:44:48.936Z",
-      "updatedAt": "2024-10-17T00:44:48.936Z"
+      "createdAt": "2024-10-17T23:47:15.741Z",
+      "updatedAt": "2024-10-17T23:47:15.742Z"
     },
     {
-      "id": "99790a0c-086b-48b2-84b2-fb0752c46b9a",
-      "ra": "1234567891",
-      "name": "Heitor",
-      "passwordHash": "$2b$10$0Y1CMoonSF9EVsfnk1dZe.3/OhGvmGmHseUmgYyiZOGyGLASqyacW",
-      "birthdate": "2008-07-12T00:00:00.000Z",
+      "id": "5435e879-45d9-4724-a515-358dab5776cd",
+      "ra": "RA987654321",
+      "name": "Kaique Com K",
+      "passwordHash": "$2b$10$yce4cjqShEXoHQwI8vKZJ.JF6mfjAClnlzQZpe2o5hcBuyirI7ppm",
+      "birthdate": "1999-07-10T00:00:00.000Z",
       "active": true,
-      "createdAt": "2024-10-17T00:44:56.236Z",
-      "updatedAt": "2024-10-17T00:44:56.236Z"
+      "createdAt": "2024-10-18T01:03:57.459Z",
+      "updatedAt": "2024-10-18T01:03:57.459Z"
+    },
+    {
+      "id": "1cf31999-e034-4495-9310-c9b70b7af95b",
+      "ra": "RA456789132",
+      "name": "Xuxu",
+      "passwordHash": "$2b$10$S.q3U8or2wg2WPhSKOZEeeamMJ9wXoxtad57YAod3DwdP66GP.hUm",
+      "birthdate": "1999-07-10T00:00:00.000Z",
+      "active": true,
+      "createdAt": "2024-10-18T01:04:35.072Z",
+      "updatedAt": "2024-10-18T01:04:35.072Z"
     }
   ],
   "posts": [
     {
-      "id": "6f498b75-bb28-46c9-a8a1-bd77fff87ed8",
-      "studentId": "f8255313-31be-4524-9717-9b46281fa8e9",
-      "content": "Student 1, teste 1",
+      "id": "1188429b-5b57-4a02-b176-ab287c1e1669",
+      "studentId": "63befa51-a9dd-4d50-8fd5-36c2558402c0",
+      "content": "Cortei o pulso galera!",
       "active": true,
-      "publishedAt": "2024-10-17T00:46:07.158Z",
+      "publishedAt": "2024-10-17T23:48:43.544Z",
       "updatedAt": null
+    }
+  ],
+  "comments": [
+    {
+      "id": "988b5441-6058-4d3e-a196-5da878683180",
+      "studentId": "63befa51-a9dd-4d50-8fd5-36c2558402c0",
+      "postId": "1188429b-5b57-4a02-b176-ab287c1e1669",
+      "content": "Eu sou dono do post",
+      "active": false,
+      "commentedAt": "2024-10-18T01:06:42.370Z",
+      "updatedAt": "2024-10-18T01:08:23.640Z"
     },
     {
-      "id": "e7b5e46d-e50f-4147-9a2d-21e0790c57ba",
-      "studentId": "f8255313-31be-4524-9717-9b46281fa8e9",
-      "content": "Student 1, teste 2",
-      "active": true,
-      "publishedAt": "2024-10-17T00:46:13.048Z",
-      "updatedAt": null
-    },
-    {
-      "id": "981f1d11-ba1c-4af4-9f4c-b214790a2d29",
-      "studentId": "f8255313-31be-4524-9717-9b46281fa8e9",
-      "content": "Student 1, teste 3",
-      "active": true,
-      "publishedAt": "2024-10-17T00:46:17.942Z",
-      "updatedAt": null
-    },
-    {
-      "id": "fd5fda6e-0beb-48fc-be8f-41bb8bd5edfc",
-      "studentId": "99790a0c-086b-48b2-84b2-fb0752c46b9a",
-      "content": "Student 2, teste 1",
-      "active": true,
-      "publishedAt": "2024-10-17T00:47:17.946Z",
-      "updatedAt": null
-    },
-    {
-      "id": "04d13b9e-dc91-4553-8119-84b872209dd8",
-      "studentId": "99790a0c-086b-48b2-84b2-fb0752c46b9a",
-      "content": "Student 2, teste 2",
-      "active": true,
-      "publishedAt": "2024-10-17T00:47:22.301Z",
-      "updatedAt": null
+      "id": "a04943a3-8f6e-43f8-a554-57b591e494de",
+      "studentId": "1cf31999-e034-4495-9310-c9b70b7af95b",
+      "postId": "1188429b-5b57-4a02-b176-ab287c1e1669",
+      "content": "Oi eu sou o xuxu!",
+      "active": false,
+      "commentedAt": "2024-10-18T01:06:56.713Z",
+      "updatedAt": "2024-10-18T01:10:17.752Z"
     }
   ]
 }

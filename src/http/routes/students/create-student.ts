@@ -1,5 +1,5 @@
 import { db } from '@database/client'
-import { encryptPassword } from '@lib/bcrypt'
+import { encrytPassword } from '@lib/bcrypt'
 // import { generatePassword } from '@utils/generate-password'
 import { randomUUID } from 'crypto'
 import { Request, Response } from 'express'
@@ -11,24 +11,24 @@ interface Body {
 }
 
 export async function createStudent(
-  req: Request,
-  res: Response,
+  request: Request,
+  response: Response,
 ): Promise<void> {
-  const { ra, name, birthdate } = req.body as Body
+  const { ra, name, birthdate } = request.body as Body
 
   const studentByRa = db.findMany('students', { ra })
 
   if (studentByRa.length) {
-    res.status(400).json({
+    response.status(400).json({
       result: 'error',
-      message: `Students register ${ra} already exitis`,
+      message: `Students register ${ra} already exists`,
     })
 
     return
   }
 
   // const password = generatePassword()
-  const passwordEncrypt = await encryptPassword('123456')
+  const passwordEncrypt = await encrytPassword('123456')
 
   const student = {
     id: randomUUID(),
@@ -43,7 +43,7 @@ export async function createStudent(
 
   db.create('students', student)
 
-  res.status(201).json({
+  response.status(201).json({
     result: 'success',
     message: 'Student profile created',
   })

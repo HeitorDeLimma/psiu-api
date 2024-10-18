@@ -1,11 +1,17 @@
 import { db } from '@database/client'
 import { Request, Response } from 'express'
 
-export async function inactivateStudent(
+interface Body {
+  name: string
+  birthdate: string
+}
+
+export async function updateStudent(
   request: Request,
   response: Response,
 ): Promise<void> {
   const { studentId } = request
+  const { name, birthdate } = request.body as Body
 
   const student = db.findUnique('students', { id: studentId })
 
@@ -19,12 +25,13 @@ export async function inactivateStudent(
   }
 
   db.update('students', studentId, {
-    active: false,
+    name,
+    birthdate: new Date(birthdate),
     updatedAt: new Date(),
   })
 
   response.json({
     result: 'success',
-    message: 'Student deleted',
+    message: 'Student upated',
   })
 }

@@ -13,6 +13,7 @@ export async function updatePost(
   request: Request<Params>,
   response: Response,
 ): Promise<void> {
+  const { studentId } = request
   const { postId } = request.params
   const { content } = request.body as Body
 
@@ -27,6 +28,15 @@ export async function updatePost(
     return
   }
 
+  if (post.studentId !== studentId) {
+    response.status(401).json({
+      result: 'error',
+      message: 'Operation not allowed',
+    })
+
+    return
+  }
+
   db.update('posts', postId, {
     content,
     updatedAt: new Date(),
@@ -34,6 +44,6 @@ export async function updatePost(
 
   response.json({
     result: 'success',
-    message: 'Post updated',
+    message: 'Post upated',
   })
 }

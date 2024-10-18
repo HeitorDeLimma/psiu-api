@@ -31,12 +31,12 @@ export class Database {
   }
 
   // SELECT MANY
-  findMany(table: string, search?: Where): Row[] {
+  findMany(table: string, where?: Where): Row[] {
     let data = this.#database[table] ?? []
 
-    if (search) {
+    if (where) {
       data = data.filter((row) => {
-        return Object.entries(search).some(([key, value]) => {
+        return Object.entries(where).every(([key, value]) => {
           if (typeof row[key] === 'boolean') return row[key] === value
 
           return row[key]?.includes(value)
@@ -48,11 +48,11 @@ export class Database {
   }
 
   // SELECT UNIQUE
-  findUnique(table: string, search: Where): Row | null {
+  findUnique(table: string, where: Where): Row | null {
     const data = this.#database[table] ?? []
 
     const found = data.find((row) =>
-      Object.entries(search).every(([key, value]) => row[key] === value),
+      Object.entries(where).every(([key, value]) => row[key] === value),
     )
 
     return found ?? null
@@ -73,9 +73,9 @@ export class Database {
 
   // UPDATE
   update(
-    table: string, // students, posts ...
-    id: string | number, // valor aleatório
-    data: Omit<Row, 'id'>, // ( name, birthdate, password, active, updateAt )
+    table: string,
+    id: string | number,
+    data: Omit<Row, 'id'>,
   ): Row | null {
     const rowIndex = this.#database[table].findIndex((row) => row.id === id)
 

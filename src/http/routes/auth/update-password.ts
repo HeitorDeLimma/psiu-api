@@ -1,5 +1,5 @@
 import { db } from '@database/client'
-import { checkPassword, encryptPassword } from '@lib/bcrypt'
+import { checkPassword, encrytPassword } from '@lib/bcrypt'
 import { Request, Response } from 'express'
 
 interface Body {
@@ -59,11 +59,11 @@ export async function updatePassword(
     return
   }
 
-  const passwordEncrypt = await encryptPassword(newPassword)
+  const passwordEncrypt = await encrytPassword(newPassword)
 
   db.update('students', studentId, {
     passwordHash: passwordEncrypt,
-    updateAt: new Date(),
+    updatedAt: new Date(),
   })
 
   response.json({

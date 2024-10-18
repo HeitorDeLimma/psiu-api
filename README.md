@@ -2,54 +2,54 @@
 
 ## Requisitos
 
-### Aluno 
+### Aluno
 
-- [X] Cadastrar um aluno
-  - [X] Não deve ser possível cadastrar um RA já cadastrado
-  - [X] Gerar senha aleatória para primeiro acesso
-  - [X] Criar hash para a senha aleatória gerada
+- [x] Cadastrar aluno
+  - [x] Não deve ser possível cadastrar RA já cadastrado
+  - [x] Gerar senha aleatória para primeiro acesso
+  - [x] Criar hash para a senha aleatória gerada
 
-- [X] Editar um aluno
-  - [X] Deve ser possível alterar o nome e data de nascimento do aluno
-  - [X] Não deve ser possível atualizar um student inativo
-
-- [X] Atualizar senha
-  - [X] Não deve ser possível colocar uma senha fraca
-  - [X] Checar a senha atual do estudante
-  - [X] Confirmar nova senha duas vezes
+- [x] Editar aluno
+  - [x] Deve ser possível alterar o nome e data de nascimento do aluno
+  - [x] Não deve ser possível atualizar um student inativo
   
-- [X] Deletar um aluno
-  - [X] Deve utilizar soft delete
-  - [X] Não deve ser possível deletar um student inativo
+- [x] Atualizar senha
+  - [x] Não deve ser possível colocar uma senha fraca
+  - [x] Checar a senha atual do estudante
+  - [x] Confirmar nova senha duas vezes
 
-- [X] Buscar alunos
+- [x] Deletar aluno
+  - [x] Deve utilizar soft delete
+  - [x] Não deve ser possível deletar um student inativo
+  
+- [x] Buscar alunos
   - [] Criar páginação na busca de alunos
 
 ### Autenticação
 
-- [X] Autenticação com senha
-  - [X] Não deve ser possível autenticar um estudante inativo
-  - [X] Verificar se o RA existe
-  - [X] Criar um token de autenticação
-- [X] Criar middleware de autenticação
-  - [X] Não deve ser possível passar um estudante inativo/inexistente
-  - [X] Deve varificar o id do estudante com o id presente no token
-  - [X] Deve verificar a validade do token
- 
-### Posts
+- [x] Autenticação com senha
+  - [x] Não deve ser posível autenticar um estudante inativo
+  - [x] Verificar se o RA existe
+  - [x] Criar um token de autenticação
+- [x] Criar middleware de autenticação
+  - [x] Não deve ser posível passar um estudante inativo/inexistente 
+  - [x] Deve verificar o id do estudante com id presente no token
+  - [x] Deve verificar a validade do token
 
-- [X] Criar post
-- [] Editar post
-  - [] Deve ser possível editar o conteúdo do post
-- [] Deletar post
-- [] Buscar posts
-- [] Buscar posts por aluno
+### Post
+
+- [x] Criar post
+- [x] Editar post
+  - [x] Dever ser possível editar o conteúdo do post
+- [x] Deletar post
+- [x] Buscar posts
+- [x] Buscar posts por aluno
 
 ### ComentarioPost
 
-- [] Criar comentario
-- [] Editar comentario
-- [] Deletar comentario
+- [] Criar comentário
+- [] Editar comentário
+- [] Deletar comentário
 
 ### ReacaoPost
 
