@@ -43,17 +43,26 @@
   - [x] Dever ser possível editar o conteúdo do post
 - [x] Deletar post
 - [x] Buscar posts
+ - [X] Incluir comentários
+ - [X] Incluir reações
 - [x] Buscar posts por aluno
+ - [] Criar paginação
 
 ### ComentarioPost
 
-- [] Criar comentário
-- [] Editar comentário
-- [] Deletar comentário
+- [X] Criar comentário
+- [X] Editar comentário
+- [X] Deletar comentário
 
 ### ReacaoPost
 
-- [] Criar reação
+- [] Criar reação para post/comentários
+  - [X] Remover reação 
+  - [X] Apoio ❤️
+  - [X] Entendo você 👐
+  - [X] Força 💪
+  - [X] Tristeza 😢
+  - [X] Estamos juntos 🤝
 - [] Deletar reação
 
 ### ReacaoComentario

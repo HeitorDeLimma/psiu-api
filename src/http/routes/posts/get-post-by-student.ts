@@ -1,11 +1,17 @@
 import { db } from '@database/client'
 import { Request, Response } from 'express'
 
-export async function getPosts(
-  request: Request,
+interface Params {
+  studentId: string
+}
+
+export async function getPostByStudent(
+  request: Request<Params>,
   response: Response,
 ): Promise<void> {
-  const posts = db.findMany('posts', { active: true })
+  const { studentId } = request.params
+
+  const posts = db.findMany('posts', { active: true, studentId })
 
   const postsResponse = posts.map((post) => {
     const comments = db.findMany('comments', { postId: post.id, active: true })
@@ -26,22 +32,15 @@ export async function getPosts(
       updatedAt: reaction.updatedAt,
     }))
 
-    const summaryPosts = {
-      id: post.id,
-      content: post.content,
-      publishedAt: post.publishedAt,
-      updatedAt: post.updatedAtS,
-    }
-
     return {
-      ...summaryPosts,
+      ...summaryReactions,
       comments: summaryComments,
       reactions: summaryReactions,
     }
   })
 
   response.json({
-    result: 'success',
+    result: 'Success',
     data: postsResponse,
   })
 }
