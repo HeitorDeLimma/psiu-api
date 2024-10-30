@@ -11,13 +11,27 @@ export async function getPosts(
     const comments = db.findMany('comments', { postId: post.id, active: true })
     const reactions = db.findMany('posts_reactions', { postId: post.id })
 
-    const summaryComments = comments.map((comment) => ({
-      id: comment.id,
-      postId: comment.postId,
-      content: comment.content,
-      contentedAt: comment.comentedAt,
-      updatedAt: comment.updatedAt,
-    }))
+    const summaryComments = comments.map((comment) => {
+      const reactions = db.findMany('comments_reactions', {
+        commentId: comment.id,
+      })
+
+      const summaryReactions = reactions.map((reaction) => ({
+        id: reaction.id,
+        content: reaction.content,
+        publishedAt: reaction.publishedAt,
+        updatedAt: reaction.updatedAt,
+      }))
+
+      return {
+        id: comment.id,
+        postId: comment.postId,
+        content: comment.content,
+        contentedAt: comment.comentedAt,
+        updatedAt: comment.updatedAt,
+        reactions: summaryReactions,
+      }
+    })
 
     const summaryReactions = reactions.map((reaction) => ({
       id: reaction.id,
