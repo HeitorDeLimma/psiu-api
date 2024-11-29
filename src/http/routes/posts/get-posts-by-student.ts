@@ -1,19 +1,19 @@
 import { db } from '@database/client'
 import { Request, Response } from 'express'
 
-export async function getPosts(
-  request: Request,
+interface Params {
+  studentId: string
+}
+
+export async function getPostsByStudent(
+  request: Request<Params>,
   response: Response,
 ): Promise<void> {
-  const { studentId } = request
-  const posts = db.findMany('posts', { active: true })
+  const { studentId } = request.params
 
-  const sortedPosts = posts.sort(
-    (a, b) =>
-      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
-  )
+  const posts = db.findMany('posts', { active: true, studentId })
 
-  const postsResponse = sortedPosts.map((post) => {
+  const postsResponse = posts.map((post) => {
     const comments = db.findMany('comments', { postId: post.id, active: true })
     const reactions = db.findMany('posts_reactions', { postId: post.id })
 
@@ -51,7 +51,7 @@ export async function getPosts(
 
     const summaryPost = {
       id: post.id,
-      isOwner: post.studentId === studentId,
+      isOwner: true,
       content: post.content,
       publishedAt: post.publishedAt,
       updatedAt: post.updatedAt,
