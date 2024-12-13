@@ -6,6 +6,7 @@ export async function getPosts(
   response: Response,
 ): Promise<void> {
   const { studentId } = request
+
   const posts = db.findMany('posts', { active: true })
 
   const sortedPosts = posts.sort(

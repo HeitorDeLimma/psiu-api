@@ -40,6 +40,7 @@ export async function createPostReaction(
       db.update('posts_reactions', postReaction.id, {
         type,
       })
+
       response.status(201).json({
         result: 'success',
         message: 'Post reacted',

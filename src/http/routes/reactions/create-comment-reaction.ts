@@ -41,9 +41,15 @@ export async function createCommentReaction(
         type,
       })
 
+      response.status(201).json({
+        result: 'success',
+        message: 'Comment reacted',
+      })
+
       return
     } else {
-      db.delete('posts_reactions', commentReaction.id)
+      db.delete('comments_reactions', commentReaction.id)
+
       response.status(201).json({
         result: 'success',
         message: 'Reaction removed',
