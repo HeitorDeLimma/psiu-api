@@ -24,7 +24,7 @@ export async function createPostReaction(
   if (!post) {
     response.status(400).json({
       result: 'error',
-      message: 'Post not found',
+      message: 'Post não encontrado',
     })
 
     return

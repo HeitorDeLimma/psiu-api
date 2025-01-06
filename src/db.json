@@ -3,12 +3,11 @@
     {
       "id": "b0c33969-c188-4bf7-a304-f0462f799ec4",
       "ra": "RA1",
-      "name": "H. Lima",
-      "passwordHash": "$2b$10$.GTXTx6ji0qw4SfeAzRFL.3FMnT0Hl9DqVoCSWDkNcW9BiaRNwqpS",
-      "birthdate": "2008-12-07T00:00:00.000Z",
+      "passwordHash": "$2b$10$0O8.6gkYKtIWimmBt3Cw7O6npoE9BFkj6kLNQEWBkVp//wkAH9TaK",
+      "birthdate": null,
       "active": true,
       "createdAt": "2024-12-12T23:19:18.911Z",
-      "updatedAt": "2024-12-12T23:19:18.911Z"
+      "updatedAt": "2024-12-18T01:04:42.793Z"
     }
   ],
   "posts": [
@@ -75,18 +74,18 @@
   ],
   "posts_reactions": [
     {
-      "id": "1e65c2f9-d62f-4519-9b90-1cce979a6b70",
+      "id": "c3a8744f-25de-445c-97ff-9955309e228b",
       "studentId": "b0c33969-c188-4bf7-a304-f0462f799ec4",
       "postId": "1fc5a7e5-b51f-4bf7-8902-91b86b4dcb60",
-      "type": 2,
-      "reactedAt": "2024-12-12T23:22:30.825Z"
+      "type": 0,
+      "reactedAt": "2025-01-06T22:53:14.395Z"
     },
     {
-      "id": "7b926979-f78a-452f-bd63-deb3a5013116",
+      "id": "8f6f35d4-7bfd-4587-8375-9c0de551f142",
       "studentId": "b0c33969-c188-4bf7-a304-f0462f799ec4",
       "postId": "9fd31e5b-b074-4bb0-a5e8-766db2376318",
-      "type": 3,
-      "reactedAt": "2024-12-13T00:20:31.933Z"
+      "type": 0,
+      "reactedAt": "2025-01-06T22:53:22.026Z"
     }
   ],
   "comments_reactions": []
