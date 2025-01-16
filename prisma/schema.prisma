@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum EnumTypeReaction {
+  APOIO
+  ENTENDO_VOCE
+  FORCA
+  TRISTEZA
+  ESTAMOS_JUNTOS
+}
+
+model Student {
+  id           String    @id @default(uuid())
+  ra           String    @unique
+  name         String
+  passwordHash String    @map("password_hash")
+  birthdate    DateTime?
+  active       Boolean   @default(true)
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  @@map("students")
+}
+
+model Post {
+  id        String   @id @default(uuid())
+  studentId String   @unique
+  content   String
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("posts")
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  studentId String   @unique
+  postId    String   @unique
+  content   String
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("comments")
+}
+
+model PostReaction {
+  id        String           @id @default(uuid())
+  studentId String           @unique
+  postId    String           @unique
+  type      EnumTypeReaction
+  reactedAt DateTime         @default(now()) @map("reacted_at")
+
+  @@map("posts_reactions")
+}
+
+model CommentReaction {
+  id        String           @id @default(uuid())
+  studentId String           @unique
+  commentId String           @unique
+  type      EnumTypeReaction
+  reactedAt DateTime         @default(now()) @map("reacted_at")
+
+  @@map("comments_reactions")
+}
