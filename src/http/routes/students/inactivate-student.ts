@@ -1,4 +1,4 @@
-import { db } from '@database/client'
+import { prisma } from '@lib/prisma'
 import { Request, Response } from 'express'
 
 export async function inactivateStudent(
@@ -7,24 +7,32 @@ export async function inactivateStudent(
 ): Promise<void> {
   const { studentId } = request
 
-  const student = db.findUnique('students', { id: studentId })
+  const student = await prisma.student.findUnique({
+    where: {
+      id: studentId,
+    },
+  })
 
   if (!student) {
     response.status(400).json({
       result: 'error',
-      message: 'Student not found',
+      message: 'Estudante não encontrado',
     })
 
     return
   }
 
-  db.update('students', studentId, {
-    active: false,
-    updatedAt: new Date(),
+  await prisma.student.update({
+    where: {
+      id: studentId,
+    },
+    data: {
+      active: false,
+    },
   })
 
   response.json({
     result: 'success',
-    message: 'Student deleted',
+    message: 'Estudante deletado',
   })
 }

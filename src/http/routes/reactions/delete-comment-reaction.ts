@@ -1,4 +1,4 @@
-import { db } from '@database/client'
+import { prisma } from '@lib/prisma'
 import { Request, Response } from 'express'
 
 interface Params {
@@ -12,30 +12,38 @@ export async function deleteCommentReaction(
   const { studentId } = request
   const { reactionId } = request.params
 
-  const reaction = db.findUnique('comments_reactions', { id: reactionId })
+  const reaction = await prisma.commentReaction.findUnique({
+    where: {
+      id: reactionId,
+    },
+  })
 
   if (!reaction) {
     response.status(400).json({
       result: 'error',
-      message: 'Reaction not found',
+      message: 'Reação não encontrada',
     })
 
     return
   }
 
-  if (reaction.studentId !== studentId) {
+  if (reaction.ownerId !== studentId) {
     response.status(401).json({
       result: 'error',
-      message: 'Operation not allowed',
+      message: 'Operação não autorizada',
     })
 
     return
   }
 
-  db.delete('comments_reactions', reactionId)
+  await prisma.commentReaction.delete({
+    where: {
+      id: reactionId,
+    },
+  })
 
   response.json({
     result: 'success',
-    message: 'Reaction removed',
+    message: 'Reação removida',
   })
 }

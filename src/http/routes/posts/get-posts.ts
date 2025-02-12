@@ -1,4 +1,4 @@
-import { db } from '@database/client'
+import { prisma } from '@lib/prisma'
 import { Request, Response } from 'express'
 
 export async function getPosts(
@@ -6,67 +6,107 @@ export async function getPosts(
   response: Response,
 ): Promise<void> {
   const { studentId } = request
+  const { _page = '1', _perPage = '10' } = request.query
 
-  const posts = db.findMany('posts', { active: true })
+  const page = Math.max(parseInt(_page as string, 10), 1)
+  const perPage = Math.max(parseInt(_perPage as string, 10), 1)
 
-  const sortedPosts = posts.sort(
-    (a, b) =>
-      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
-  )
+  const offset = (page - 1) * perPage
 
-  const postsResponse = sortedPosts.map((post) => {
-    const comments = db.findMany('comments', { postId: post.id, active: true })
-    const reactions = db.findMany('posts_reactions', { postId: post.id })
+  const posts = await prisma.post.findMany({
+    where: {
+      active: true,
+    },
+    select: {
+      id: true,
+      content: true,
+      publishedAt: true,
+      updatedAt: true,
+      ownerId: true,
+      comments: {
+        select: {
+          id: true,
+          content: true,
+          commentedAt: true,
+          updatedAt: true,
+          postId: true,
+          ownerId: true,
+          reactions: {
+            select: {
+              id: true,
+              type: true,
+              reactedAt: true,
+              commentId: true,
+              ownerId: true,
+            },
+          },
+        },
+      },
+      reactions: {
+        select: {
+          id: true,
+          type: true,
+          reactedAt: true,
+          postId: true,
+          ownerId: true,
+        },
+      },
+    },
+    orderBy: {
+      publishedAt: 'desc',
+    },
+    skip: offset,
+    take: perPage,
+  })
 
-    const summaryComments = comments.map((comment) => {
-      const reactions = db.findMany('comments_reactions', {
-        commentId: comment.id,
+  const items = await prisma.post.count({
+    where: {
+      active: true,
+    },
+  })
+
+  const last = Math.ceil(items / perPage)
+  const prev = page > 1 ? page - 1 : null
+  const next = page < last ? page + 1 : null
+
+  const postsResponse = posts.map((post) => {
+    const comments = post.comments.map((comment) => {
+      const reactions = comment.reactions.map((reaction) => {
+        return {
+          ...reaction,
+          isOwner: reaction.ownerId === studentId,
+        }
       })
 
-      const summaryReactions = reactions.map((reaction) => ({
-        id: reaction.id,
-        postId: reaction.postId,
-        isOwner: reaction.studentId === studentId,
-        type: reaction.type,
-        reactedAt: reaction.reactedAt,
-      }))
-
       return {
-        id: comment.id,
-        postId: comment.postId,
-        isOwner: comment.studentId === studentId,
-        content: comment.content,
-        commentedAt: comment.commentedAt,
-        updatedAt: comment.updatedAt,
-        reactions: summaryReactions,
+        ...comment,
+        reactions,
+        isOwner: comment.ownerId === studentId,
       }
     })
 
-    const summaryReactions = reactions.map((reaction) => ({
-      id: reaction.id,
-      postId: reaction.postId,
-      isOwner: reaction.studentId === studentId,
-      type: reaction.type,
-      reactedAt: reaction.reactedAt,
-    }))
-
-    const summaryPost = {
-      id: post.id,
-      isOwner: post.studentId === studentId,
-      content: post.content,
-      publishedAt: post.publishedAt,
-      updatedAt: post.updatedAt,
-    }
+    const reactions = post.reactions.map((reaction) => {
+      return {
+        ...reaction,
+        isOwner: reaction.ownerId === studentId,
+      }
+    })
 
     return {
-      ...summaryPost,
-      comments: summaryComments,
-      reactions: summaryReactions,
+      ...post,
+      comments,
+      reactions,
+      isOwner: post.ownerId === studentId,
     }
   })
 
   response.json({
     result: 'success',
+    first: 1,
+    prev,
+    next,
+    last,
+    items,
     data: postsResponse,
   })
 }

@@ -29,8 +29,8 @@ model Post {
   id          String   @id @default(uuid())
   content     String
   active      Boolean  @default(true)
-  createdAt   DateTime @default(now()) @map("created_at")
-  publishedAt DateTime @updatedAt @map("published_at")
+  publishedAt DateTime @default(now()) @map("published_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
   owner   Student @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   ownerId String  @map("owner_id")
@@ -42,11 +42,11 @@ model Post {
 }
 
 model Comment {
-  id        String   @id @default(uuid())
-  content   String
-  active    Boolean  @default(true)
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  id          String   @id @default(uuid())
+  content     String
+  active      Boolean  @default(true)
+  commentedAt DateTime @default(now()) @map("commented_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
   owner   Student @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   ownerId String  @map("owner_id")

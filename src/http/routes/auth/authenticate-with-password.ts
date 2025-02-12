@@ -1,5 +1,5 @@
-import { db } from '@database/client'
 import { checkPassword } from '@lib/bcrypt'
+import { prisma } from '@lib/prisma'
 import { Request, Response } from 'express'
 import { sign } from 'jsonwebtoken'
 
@@ -14,7 +14,11 @@ export async function authenticateWithPassword(
 ): Promise<void> {
   const { ra, password } = request.body as Body
 
-  const student = db.findUnique('students', { ra })
+  const student = await prisma.student.findUnique({
+    where: {
+      ra,
+    },
+  })
 
   if (!student) {
     response.status(401).json({
@@ -45,13 +49,15 @@ export async function authenticateWithPassword(
     return
   }
 
-  const token = sign({ id: student.id }, 'psiu', { expiresIn: '3d' })
+  const token = sign({ id: student.id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  })
 
   // Seta o token no cookie do response
   response.cookie('token', token, {
     httpOnly: true,
     sameSite: 'lax',
-    maxAge: 7 * 24 * 60 * 60 * 1000,
+    maxAge: Number(process.env.JWT_MAX_AGE),
   })
 
   response.json({

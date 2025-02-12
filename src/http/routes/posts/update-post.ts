@@ -1,4 +1,4 @@
-import { db } from '@database/client'
+import { prisma } from '@lib/prisma'
 import { Request, Response } from 'express'
 
 interface Params {
@@ -17,33 +17,72 @@ export async function updatePost(
   const { postId } = request.params
   const { content } = request.body as Body
 
-  const post = db.findUnique('posts', { id: postId })
+  const post = await prisma.post.findUnique({ where: { id: postId } })
 
   if (!post) {
     response.status(400).json({
       result: 'error',
-      message: 'Post not found',
+      message: 'Post não encontrado',
     })
 
     return
   }
 
-  if (post.studentId !== studentId) {
+  if (post.ownerId !== studentId) {
     response.status(401).json({
       result: 'error',
-      message: 'Operation not allowed',
+      message: 'Operação não autorizada',
     })
 
     return
   }
 
-  db.update('posts', postId, {
-    content,
-    updatedAt: new Date(),
+  const updatedPost = await prisma.post.update({
+    where: {
+      id: postId,
+    },
+    data: {
+      content,
+    },
+    include: {
+      comments: {
+        select: {
+          id: true,
+          content: true,
+          active: true,
+          commentedAt: true,
+          updatedAt: true,
+          ownerId: true,
+          postId: true,
+          reactions: true,
+        },
+      },
+      reactions: true,
+    },
+  })
+
+  const comments = updatedPost.comments.map((comment) => {
+    const reactions = comment.reactions.map((reaction) => ({
+      ...reaction,
+      isOwner: comment.ownerId === studentId,
+    }))
+
+    return {
+      ...comment,
+      reactions,
+      isOwner: comment.ownerId === studentId,
+    }
   })
 
   response.json({
     result: 'success',
-    message: 'Post upated',
+    message: 'Post atualizado',
+    data: {
+      post: {
+        ...updatedPost,
+        comments,
+        isOwner: true,
+      },
+    },
   })
 }
